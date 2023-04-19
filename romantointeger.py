@@ -1,14 +1,23 @@
+import re
 class RomanToInt:
     def __init__(self, s) -> None:
         self.s = s
-    # def check_occurence(self):
-    #     s = self.s
-    #     k = dict()
-    #     str_list = s.strip()
-    #     list_len = len(str_list)
-    #     # for i in range(0,list_len)
+
+    def is_roman_number(self):
+        s = self.s
+        pattern = re.compile(r"""   
+                                    ^M{0,3}
+                                    (CM|CD|D?C{0,3})?
+                                    (XC|XL|L?X{0,3})?
+                                    (IX|IV|V?I{0,3})?$
+                """, re.VERBOSE)
+        if re.match(pattern, s):
+            return True
+        return False
+
     def convert_roman_to_integer(self) -> int:
-        # self.check_occurence()
+        if not self.is_roman_number():
+            raise Exception("Not a valid roman")
         roman={
             "I":1,
             "V":5,
@@ -27,7 +36,7 @@ class RomanToInt:
                 result+=roman[s[i]]
         return result+roman[s[-1]]
     
-y = RomanToInt("IX")
+y = RomanToInt("I")
 z = y.convert_roman_to_integer()
 print(z)
 
