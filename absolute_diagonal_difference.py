@@ -28,3 +28,50 @@ arr = []
 for _ in range(n):
     arr.append(list(map(int, input().rstrip().split())))
 result = diagonalDifference(arr)
+
+
+def diagonalSum(mat):
+
+    '''
+        Evaluating the sum of diagonal 
+        elements from the array excluding 
+        the crossing element.
+
+
+        ####
+        The diagonal crossing element will be 
+        in only odd size matrices 
+        ####
+
+
+        Input: mat = 
+            [
+                [1,1,1,1],
+                [1,1,1,1],
+                [1,1,1,1],
+                [1,1,1,1]
+            ]
+        Output: 8
+    '''
+    sum_ = 0
+    for i, v in enumerate(mat):
+        sum_ += v[i]
+    for i, v in enumerate(reversed(mat)):
+        sum_ += v[i]
+
+    if len(mat) % 2 != 0:
+        x = mat[len(mat)//2][len(mat)//2]
+        sum_ -= x
+
+    return sum_
+
+
+    # n = len(mat)
+    # sum_ =0
+    # for i in range(n):
+    #     sum_ += mat[i][i]
+    #     sum_ += mat[i][n-i-1]
+    
+    # if n%2==1:
+    #     sum_ -= mat[n//2][n//2]
+    # return sum_
